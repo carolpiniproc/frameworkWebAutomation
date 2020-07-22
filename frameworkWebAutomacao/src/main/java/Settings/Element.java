@@ -76,5 +76,8 @@ public class Element {
         select.selectByVisibleText(value);
     }
 
+    public boolean isVisible(){
+        return getElement().isDisplayed();
+    }
 
 }
