@@ -1,5 +1,6 @@
 package Settings;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -10,7 +11,9 @@ public class Element {
     private ByValue by; //comando do selenium
     private String map; //caminhos dos elementos
     private WebElement webElement = null;
+    private WebElement element = null; // para minimizar o tempo de execução e não utilizar tanto o findElement
     private HashMap<ByValue,By> byMap = new HashMap<ByValue, By>();
+    private Alert alert = null;
 
     public Element(ByValue by, String _map){
         this.by = by;
@@ -37,7 +40,10 @@ public class Element {
     }
 
     public WebElement getElement(){
-        return getWebElement(byMap.get(by));
+        if(element == null) {
+         getWebElement(byMap.get(by));
+        }
+        return element;
     }
 
     public List<WebElement> getElements(){
@@ -74,6 +80,20 @@ public class Element {
         select.selectByVisibleText(value);
     }
 
+    public void waitVisibleElement(){
+        element = Driver.waitVisibleElement(byMap.get(by));
+    }
 
+    public void waitInvisibleElement(){
+        Driver.waitInvisibilityElement(byMap.get(by));
+    }
+
+    public void waitClickableElement(){
+        element = Driver.waitIsClickable(byMap.get(by));
+    }
+
+    public void waitIsPresentAlert(){
+        alert = Driver.waitIsPresentAlert();
+    }
 
 }
