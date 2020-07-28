@@ -64,9 +64,12 @@ public class Element {
     public String getAttribute(String value){
        return getElement().getAttribute(value);
     }
-    public void clear(){
+
+    public Element clear(){
         getElement().clear();
+        return this;
     }
+
     public boolean isEnable(){
         return getElement().isEnabled();
     }
@@ -80,20 +83,22 @@ public class Element {
         select.selectByVisibleText(value);
     }
 
-    public void waitVisibleElement(){
+    public Element waitVisibleElement(){
         element = Driver.waitVisibleElement(byMap.get(by));
+        return this;
     }
 
     public void waitInvisibleElement(){
         Driver.waitInvisibilityElement(byMap.get(by));
     }
 
-    public void waitClickableElement(){
+    public Element waitClickableElement(){
         element = Driver.waitIsClickable(byMap.get(by));
+        return this;
     }
 
-    public void waitIsPresentAlert(){
+    public Element waitIsPresentAlert(){
         alert = Driver.waitIsPresentAlert();
+        return this;
     }
-
 }
