@@ -64,9 +64,7 @@ public class Element {
     public boolean isEnable(){
         return getElement().isEnabled();
     }
-    public boolean isDisable(){
-        return getElement().isDisplayed();
-    }
+    public boolean isDisplayed(){return getElement().isDisplayed(); }
     public boolean isSelected(){
         return getElement().isSelected();
     }
@@ -76,8 +74,6 @@ public class Element {
         select.selectByVisibleText(value);
     }
 
-    public boolean isVisible(){
-        return getElement().isDisplayed();
-    }
+
 
 }
