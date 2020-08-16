@@ -41,7 +41,7 @@ public class Element {
 
     public WebElement getElement(){
         if(element == null) {
-         getWebElement(byMap.get(by));
+        element = getWebElement(byMap.get(by));
         }
         return element;
     }
